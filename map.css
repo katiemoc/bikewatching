@@ -32,6 +32,10 @@ em {
     color: gray;
 }
 
+#map circle {
+    --departure-ratio: 0.5;
+}
+
 #map circle, .legend > div {
     --color-departures: steelblue;
     --color-arrivals: #FF4433;
@@ -54,10 +58,11 @@ em {
     z-index: 1;
     width: 100%;
     height: 100%;
-    pointer-events: auto;
+    pointer-events: none;
 }
 
 circle {
+    pointer-events: auto;
     fill: var(--color);
 }
 

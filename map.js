@@ -113,7 +113,7 @@ map.on('load', async () => {
             d3.select(this)
               .append('title')
               .text(
-                `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`,
+                `${d.totalTraffic} total trips (${d.departures} departures, ${d.arrivals} arrivals)`,
               );
         })
         .style('--departure-ratio', (d) =>
@@ -124,7 +124,7 @@ map.on('load', async () => {
     function updatePositions() {
         circles
         .attr('cx', (d) => getCoords(d).cx) // Set the x-position using projected coordinates
-        .attr('cy', (d) => getCoords(d).cy); // Set the y-position using projected coordinates
+        .attr('cy', (d) => getCoords(d).cy) // Set the y-position using projected coordinates
     }
 
     // Initial position update when map loads
@@ -215,6 +215,6 @@ function computeStationTraffic(stations, trips) {
         station.departures = departures.get(id) ?? 0;
         station.totalTraffic = station.arrivals + station.departures;
         return station;
-    });
+    }).filter((station) => station.totalTraffic > 0);;
 }
   
